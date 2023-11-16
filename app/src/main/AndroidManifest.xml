@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Activité principale (lance l'application) -->
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activité d'inscription -->
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:label="@string/title_activity_sign_up">
+        </activity>
+
+        <!-- Activité de flux d'actualités -->
+        <activity
+            android:name=".activities.NewsFeedActivity"
+            android:label="@string/title_activity_news_feed">
+        </activity>
+
+        <!-- Activité de détails d'actualité -->
+        <activity
+            android:name=".activities.NewsDetailsActivity"
+            android:label="@string/title_activity_news_details">
+        </activity>
+    </application>
+</manifest>
