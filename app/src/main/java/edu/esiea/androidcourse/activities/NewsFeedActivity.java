@@ -27,16 +27,14 @@ public class NewsFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed);
-
         newsApiRequest = new NewsApiRequest(this);
-
         recyclerView = findViewById(R.id.newsRecyclerView);
         searchView = findViewById(R.id.searchView);
 
-        // Configure RecyclerView
+        // Configuration RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Configure SearchView
+        // Configuration SearchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -51,9 +49,8 @@ public class NewsFeedActivity extends AppCompatActivity {
             }
         });
 
-        // Initialize and set the adapter after configuring RecyclerView
+        // Initialisation et assignation de l'Adapter
         newsAdapter = new NewsAdapter(this);
-        // Load initial news data
         loadNewsData(null);
         recyclerView.setAdapter(newsAdapter);
     }
@@ -62,7 +59,6 @@ public class NewsFeedActivity extends AppCompatActivity {
         newsApiRequest.getNewsList(keyword, new NewsApiRequest.NewsApiCallback() {
             @Override
             public void onSuccess(List<NewsModel> newsList) {
-                Log.d("NewsFeedActivity", "Nombre d'actualités reçues : " + newsList.size());
                 newsAdapter.setNewsList(newsList);
             }
 

@@ -2,10 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!-- res/layout/activity_signup.xml -->
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
@@ -13,29 +10,31 @@
 
         <ImageView
             android:id="@+id/logoImageView"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="120dp"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
-            android:contentDescription="Logo" />
+            android:contentDescription="@string/label_button_login" />
 
         <EditText
+            android:autofillHints="username"
             android:id="@+id/usernameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logoImageView"
             android:layout_marginTop="16dp"
-            android:hint="Nom d'utilisateur"
+            android:hint="@string/label_username"
             android:inputType="text" />
 
         <EditText
+            android:autofillHints="password"
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/usernameEditText"
             android:layout_marginTop="8dp"
-            android:hint="Mot de passe"
+            android:hint="@string/label_password_login"
             android:inputType="textPassword" />
 
         <Button
@@ -44,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/passwordEditText"
             android:layout_marginTop="16dp"
-            android:text="S'inscrire" />
+            android:text="@string/label_button_signup"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/loginTextView"
@@ -53,7 +54,7 @@
             android:layout_below="@+id/signUpButton"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
-            android:text="Vous avez déjà un compte ? Connectez-vous" />
+            android:text="@string/label_login_signup" />
 
     </RelativeLayout>
 

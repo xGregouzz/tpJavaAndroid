@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!-- res/layout/activity_news_details.xml -->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -28,8 +27,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_below="@id/newsTitleTextView"/>
+            android:layout_marginRight="25dp" />
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -37,7 +35,8 @@
             android:id="@+id/newsImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/placeholder_image" />
+            tools:srcCompat="@drawable/placeholder_image"
+            android:contentDescription="@string/logo_newsdetails"/>
 
     </LinearLayout>
 

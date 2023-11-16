@@ -1,13 +1,10 @@
 package edu.esiea.androidcourse.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -25,7 +22,7 @@ import edu.esiea.androidcourse.models.NewsModel;
 public class NewsApiRequest {
 
     private static final String NEWS_API_URL = "https://newsapi.org/v2/everything";
-    private static final String API_KEY = "e209794147f14ec7ba5fb0a5d5e9c96a\n"; // Remplacez par votre clé API
+    private static final String API_KEY = "e209794147f14ec7ba5fb0a5d5e9c96a";
 
     private RequestQueue requestQueue;
 
@@ -46,6 +43,7 @@ public class NewsApiRequest {
             url = NEWS_API_URL + "?q=null&apiKey=" + API_KEY;
         }
 
+        // Récupération des données de la requête
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {

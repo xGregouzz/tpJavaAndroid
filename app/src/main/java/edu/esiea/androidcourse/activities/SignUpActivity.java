@@ -2,6 +2,8 @@ package edu.esiea.androidcourse.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,13 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        // Soulignement
+        TextView textView = (TextView) findViewById(R.id.loginTextView);
+        SpannableString content = new SpannableString(textView.getText());
+        content.setSpan(new UnderlineSpan(), 27, content.length(), 0);
+        textView.setText(content);
+
+        // Recupération de la database et de ses méthodes
         databaseHelper = new DatabaseHelper(this);
 
         EditText usernameEditText = findViewById(R.id.usernameEditText);
@@ -30,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
         Button signUpButton = findViewById(R.id.signUpButton);
         TextView loginTextView = findViewById(R.id.loginTextView);
 
+        // Logique pour la création du user
         signUpButton.setOnClickListener(view -> {
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
@@ -37,16 +47,15 @@ public class SignUpActivity extends AppCompatActivity {
             if (!username.isEmpty() && !password.isEmpty()) {
                 User newUser = new User(username, password);
 
-                // Ajouter un nouvel utilisateur à la base de données
+                // Ajout du nouvel user en bdd
                 long result = databaseHelper.addUser(newUser);
 
                 if (result != -1) {
-                    // Création de compte réussie, passez à l'activité NewsFeed
+                    // Transition NewsFeed
                     Intent intent = new Intent(SignUpActivity.this, NewsFeedActivity.class);
                     startActivity(intent);
-                    finish(); // Fermez l'activité actuelle pour éviter le retour en arrière
+                    finish();
                 } else {
-                    // Affichez un message d'erreur si la création de compte échoue
                     showToast("Échec de la création de compte");
                 }
             } else {
@@ -54,13 +63,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        loginTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Lorsque l'utilisateur clique sur "Vous avez déjà un compte ? Connectez-vous"
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        loginTextView.setOnClickListener(view -> {
+            // Transition Login
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 

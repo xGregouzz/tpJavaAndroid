@@ -7,18 +7,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import edu.esiea.androidcourse.R;
-import edu.esiea.androidcourse.data.NewsAdapter;
 
 public class NewsDetailsActivity extends AppCompatActivity {
-
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +22,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         TextView newsDescriptionTextView = findViewById(R.id.newsDescriptionTextView);
         ImageView newsImageView = findViewById(R.id.newsImageView);
 
+        // Récupération des infos transmises par le intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("newsTitle") && intent.hasExtra("newsDescription") && intent.hasExtra("newsImageUrl")) {
             String newsTitle = intent.getStringExtra("newsTitle");

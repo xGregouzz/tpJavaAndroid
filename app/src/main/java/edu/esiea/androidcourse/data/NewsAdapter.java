@@ -44,26 +44,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         NewsModel newsModel = newsList.get(position);
 
-        // Remplissez les vues avec les données de l'actualité
+        // Remplissage des vues avec les données de l'actualité
         holder.titleTextView.setText(newsModel.getTitle());
         holder.publishedAtTextView.setText(newsModel.getPublishedAt());
 
-        // Utilisez la bibliothèque Glide pour charger l'image depuis l'URL
         Glide.with(context)
                 .load(newsModel.getImageUrl())
                 .into(holder.newsImageView);
 
-        // Ajoutez un écouteur de clic pour afficher les détails de l'actualité
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Passez aux détails de l'actualité
-                Intent intent = new Intent(context, NewsDetailsActivity.class);
-                intent.putExtra("newsTitle", newsModel.getTitle());
-                intent.putExtra("newsDescription", newsModel.getDescription());
-                intent.putExtra("newsImageUrl", newsModel.getImageUrl());
-                context.startActivity(intent);
-            }
+        // Transition NewsDetails
+        holder.itemView.setOnClickListener(view -> {
+            // Passage des données de la news par intent
+            Intent intent = new Intent(context, NewsDetailsActivity.class);
+            intent.putExtra("newsTitle", newsModel.getTitle());
+            intent.putExtra("newsDescription", newsModel.getDescription());
+            intent.putExtra("newsImageUrl", newsModel.getImageUrl());
+            context.startActivity(intent);
         });
     }
 
