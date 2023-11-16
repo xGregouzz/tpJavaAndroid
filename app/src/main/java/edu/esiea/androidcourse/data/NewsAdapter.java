@@ -46,7 +46,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         // Remplissez les vues avec les données de l'actualité
         holder.titleTextView.setText(newsModel.getTitle());
-        holder.descriptionTextView.setText(newsModel.getDescription());
         holder.publishedAtTextView.setText(newsModel.getPublishedAt());
 
         // Utilisez la bibliothèque Glide pour charger l'image depuis l'URL
@@ -62,10 +61,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                 Intent intent = new Intent(context, NewsDetailsActivity.class);
                 intent.putExtra("newsTitle", newsModel.getTitle());
                 intent.putExtra("newsDescription", newsModel.getDescription());
+                intent.putExtra("newsImageUrl", newsModel.getImageUrl());
                 context.startActivity(intent);
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -87,4 +88,3 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 }
-

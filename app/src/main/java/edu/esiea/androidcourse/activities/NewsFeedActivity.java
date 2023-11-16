@@ -1,6 +1,7 @@
 package edu.esiea.androidcourse.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -32,13 +33,10 @@ public class NewsFeedActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.newsRecyclerView);
         searchView = findViewById(R.id.searchView);
 
-        newsAdapter = new NewsAdapter(this);
+        // Configure RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(newsAdapter);
 
-        loadNewsData(null); // Chargez les actualités initiales sans mot-clé de recherche
-
-        // Écouteur de recherche pour mettre à jour les actualités en fonction du mot-clé entré
+        // Configure SearchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -48,24 +46,29 @@ public class NewsFeedActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Si vous souhaitez réagir également aux changements de texte en temps réel, implémentez ici
+                // Implement if needed
                 return false;
             }
         });
+
+        // Initialize and set the adapter after configuring RecyclerView
+        newsAdapter = new NewsAdapter(this);
+        // Load initial news data
+        loadNewsData(null);
+        recyclerView.setAdapter(newsAdapter);
     }
 
     private void loadNewsData(String keyword) {
         newsApiRequest.getNewsList(keyword, new NewsApiRequest.NewsApiCallback() {
             @Override
             public void onSuccess(List<NewsModel> newsList) {
-                // Mettez à jour l'adaptateur de RecyclerView avec les nouvelles actualités
+                Log.d("NewsFeedActivity", "Nombre d'actualités reçues : " + newsList.size());
                 newsAdapter.setNewsList(newsList);
             }
 
             @Override
             public void onError(String errorMessage) {
-                // Affichez un message d'erreur en cas d'échec de récupération des actualités
-                showToast("Erreur lors de la récupération des actualités: " + errorMessage);
+                showToast("Erreur lors de la récupération des actualités : " + errorMessage);
             }
         });
     }
@@ -74,5 +77,3 @@ public class NewsFeedActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
-
-
