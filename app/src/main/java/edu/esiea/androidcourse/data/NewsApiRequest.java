@@ -22,7 +22,7 @@ import edu.esiea.androidcourse.models.NewsModel;
 public class NewsApiRequest {
 
     private static final String NEWS_API_URL = "https://newsapi.org/v2/everything";
-    private static final String API_KEY = "e209794147f14ec7ba5fb0a5d5e9c96a";
+    private static final String API_KEY = "null";
 
     private RequestQueue requestQueue;
 
